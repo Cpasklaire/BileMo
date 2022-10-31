@@ -1,9 +1,9 @@
 nelmio_api_doc:
     documentation:
         info:
-            title: Books
-            description: Une API d'OpenClassrooms avec des livres, des autrices et des auteurs !
-            version: 2.0.0
+            title: Phones
+            description: API BileMo
+            version: 1.0.0
         paths:
             /api/login_check:
                 post:
@@ -37,7 +37,7 @@ nelmio_api_doc:
                     properties:
                         username:
                             type: string
-                            default: admin@bookapi.com
+                            default: admin@mail.com
                         password:
                             type: string
                             default: password

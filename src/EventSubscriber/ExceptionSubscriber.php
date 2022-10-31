@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ExceptionSubscriber implements EventSubscriberInterface
 {
-    public function onKernelException(ExceptionEvent $event)
+     public function onKernelException(ExceptionEvent $event)
     {
         $exception = $event->getThrowable();
  
@@ -33,5 +33,5 @@ class ExceptionSubscriber implements EventSubscriberInterface
         return [
             'kernel.exception' => 'onKernelException',
         ];
-    }
+    } 
 }

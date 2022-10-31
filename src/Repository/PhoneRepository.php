@@ -2,28 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Book;
-use App\Entity\Author;
+use App\Entity\Phone;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Query;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Book|null find($id, $lockMode = null, $lockVersion = null)
- * @method Book|null findOneBy(array $criteria, array $orderBy = null)
- * @method Book[]    findAll()
- * @method Book[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Phone|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Phone|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Phone[]    findAll()
+ * @method Phone[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BookRepository extends ServiceEntityRepository
+class PhoneRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Book::class);
+        parent::__construct($registry, Phone::class);
     }
 
     /**
-     * Cette méthode Retourne $limit livres à partir de la page $page. 
+     * Cette méthode Retourne $limit téléphones à partir de la page $page. 
      *
      * @param integer $page
      * @param integer $limit
@@ -40,7 +39,7 @@ class BookRepository extends ServiceEntityRepository
 
 
     // /**
-    //  * @return Book[] Returns an array of Book objects
+    //  * @return Phone[] Returns an array of Phone objects
     //  */
     /*
     public function findByExampleField($value)
@@ -57,7 +56,7 @@ class BookRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Book
+    public function findOneBySomeField($value): ?Phone
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.exampleField = :val')

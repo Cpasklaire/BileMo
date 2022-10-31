@@ -2,11 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Author;
-use App\Entity\Book;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\Phone;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -20,39 +19,34 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
         // Création d'un user "normal"
         $user = new User();
-        $user->setEmail("user@bookapi.com");
+        $user->setEmail("user@mail.com");
         $user->setRoles(["ROLE_USER"]);
         $user->setPassword($this->userPasswordHasher->hashPassword($user, "password"));
+        $user->setCreatedAt(new \DateTimeImmutable);
+        $user->setCompany("client");
         $manager->persist($user);
 
         // Création d'un user admin
         $userAdmin = new User();
-        $userAdmin->setEmail("admin@bookapi.com");
+        $userAdmin->setEmail("admin@mail.com");
         $userAdmin->setRoles(["ROLE_ADMIN"]);
         $userAdmin->setPassword($this->userPasswordHasher->hashPassword($userAdmin, "password"));
+        $userAdmin->setCreatedAt(new \DateTimeImmutable);
+        $userAdmin->setCompany("BileMo");
         $manager->persist($userAdmin);
 
-		// Création des auteurs.
-        $listAuthor = [];           
-        for ($i = 0; $i < 10; $i++) {
-            // Création de l'auteur lui même. 
-            $author = new Author();
-            $author->setFirstName("Prénom " . $i);
-            $author->setLastName("Nom " . $i);
-            $manager->persist($author);
-            // On sauvegarde l'auteur créé dans un tableau. 
-            $listAuthor[] = $author;
-        }
 
         for ($i=0; $i < 20; $i++) { 
-            $book = new Book();
-            $book->setTitle("Titre " . $i);
-            $book->setCoverText("Quatrième de couverture numéro : " . $i);
-            $book->setAuthor($listAuthor[array_rand($listAuthor)]);
-            $book->setComment("Commentaire du bibliothécaire " . $i);
-            $manager->persist($book);
+            $phone = new Phone();
+            $phone->setName("Nom " . $i);
+            $phone->setDescription("C'est un jolie téléphone : " . $i);
+            $phone->setAuthor($userAdmin);
+            $phone->setPrice($i . "euro");
+            $phone->setCreatedAt(new \DateTimeImmutable);
+            $manager->persist($phone);
         }
 
         $manager->flush();

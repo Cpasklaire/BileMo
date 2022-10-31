@@ -1,45 +1,40 @@
-# 7709361-API-REST-Symfony
+#BileMo
+OpenClassRoom - Dev PHP - Projet 7 - Créez un web service exposant une API
 
-Ce projet sert de support au cours au cours sur API et Symfony d'Openclassrooms. 
-Il est réalisé avec Symfony 6 et nécessite à minima PHP8. 
+#Require
+Symfony 6 MySQL 8 Composer
 
-Pour vérifier votre version de php vous pouvez faire :
+#Lancer le projet
+Cloner le repertoir. Modifier le .env selon votre configuration
 
-  - _php -v_ 
+Dans votre console 
+composer install : pour récupérer l'ensemble des packages nécessaires
+créer vos clefs publiques et privées pour JWT dans config/jwt :
+créez le répertoire "jwt" dans le dossier config
+openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096 : pour créer la clef privée
+openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem-pubout : pour créer la clef publique
+créer un fichier .env.local
+ce fichier doit contenir vos identifiants de connexion à la base de données
+le chemin vers vos clefs privées et publiques
+votre passphrase de création de clef
+php bin/console doctrine:database:create : pour créer la base de données
+php bin/console doctrine:schema:update --force : pour créer les tables
+php bin/console doctrine:fixtures:load : pour charger les fixtures
 
+symfony server:start
 
-Pour utiliser ce projet, vous pouvez simplement faire un :
+#Documentation
+https://127.0.0.1:8000/api/doc
+(Selon votre localhost)
 
-  - _git clone https://github.com/OpenClassrooms-Student-Center/7709361-API-REST-Symfony.git_
-  
-Et une fois le projet récupérez il faudra l'initialiser : 
+#Login
+https://127.0.0.1:8000/api/login_check
+les fixture vous donne accés à un compte test déja créé
+    * {
+    *     "email": "admin@mail.com",
+    *     "password": "password",
+    * }
 
-  - _composer install_ : pour récupérer l'ensemble des packages nécessaires
-  - créer vos clefs publiques et privées pour JWT dans config/jwt :
-    - créez le répertoire "jwt" dans le dossier config
-    - _openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096_ : pour créer la clef privée
-    - _openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem-pubout_ : pour créer la clef publique
-  - créer un fichier .env.local 
-    - ce fichier doit contenir vos identifiants de connexion à la base de données
-    - le chemin vers vos clefs privées et publiques
-    - votre passphrase de création de clef
-  - _php bin/console doctrine:database:create_ : pour créer la base de données
-  - _php bin/console doctrine:schema:update --force_ : pour créer les tables
-  - _php bin/console doctrine:fixtures:load_ : pour charger les fixtures
-
-Si _openssl_ ne fonctionne pas, tentez de lancer cette commande depuis un "gitbash". 
-
-Pour tester les routes, vous pouvez les interroger directement via postman. Par exemple : 
-  - https://127.0.0.1:8000/api/login_check : pour se logger
-  - https://127.0.0.1:8000/api/books : pour récuperer la liste des livres
-
-Vous pouvez également utiliser la documentation via Nelmio : 
-  - https://127.0.0.1:8000/api/doc
- 
-Vous pouvez également utiliser API Platform :
-  - https://127.0.0.1:8000/apip
-
-Chaque branche du projet correspond à un chapitre du cours. 
-En cas de soucis, référez-vous au cours d'Openclassrooms.
-
-Bonne chance !
+#Memory perso
+commande 
+vider cache : php bin/console cache:clear
