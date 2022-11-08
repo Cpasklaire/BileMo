@@ -18,9 +18,11 @@ créer vos clefs publiques et privées pour JWT dans config/jwt :
 
 créez le répertoire "jwt" dans le dossier config
 
-``openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096`` : pour créer la clef privée
-
-``openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem-pubout`` : pour créer la clef publique
+pour créer la clef privée et publique
+```bash
+openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
+openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem-pubout
+```
 
 créer un fichier .env
 
