@@ -148,7 +148,7 @@ class UserController extends AbstractController
      * }
      * 
      *@OA\Response(
-     *     response=200,
+     *     response=201,
      *     description="Enregistrer un user",
      *     @OA\JsonContent(
      *        type="array",

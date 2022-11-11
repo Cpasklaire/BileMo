@@ -28,7 +28,7 @@ class PhoneController extends AbstractController
      * Visualiser tous les téléphones
      * 
      * @OA\Response(
-     *     response=200,
+     *     response=201,
      *     description="Retourne la liste des téléphones",
      *     @OA\JsonContent(
      *        type="array",
